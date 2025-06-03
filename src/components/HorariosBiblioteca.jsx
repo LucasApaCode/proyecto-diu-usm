@@ -13,7 +13,7 @@ const horariosPorBiblioteca = [
   },
   {
     location: 'Santiago',
-    name: 'San Joaquín',
+    name: 'Campus San Joaquín',
     horarios: {
       Lunes: '08:00 - 20:00',
       Martes: '08:00 - 20:00',
@@ -25,7 +25,7 @@ const horariosPorBiblioteca = [
   },
   {
     location: 'Santiago',
-    name: 'Vitacura',
+    name: 'Campus Vitacura',
     horarios: {
       Lunes: '08:15 - 19:45',
       Martes: '08:15 - 19:45',
@@ -64,40 +64,54 @@ const horariosPorBiblioteca = [
 const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 const HorariosBiblioteca = () => {
+  const filas = [];
+  for (let i = 0; i < horariosPorBiblioteca.length; i++) {
+    const actual = horariosPorBiblioteca[i];
+    const siguiente = horariosPorBiblioteca[i + 1];
+    const mostrarUbicacion =
+      i === 0 || actual.location !== horariosPorBiblioteca[i - 1].location;
+    const rowspan =
+      siguiente && siguiente.location === actual.location ? 2 : 1;
+
+    filas.push(
+      <tr key={i}>
+        {mostrarUbicacion && (
+          <td className="border px-1 py-1 align-top" rowSpan={rowspan}>
+            {actual.location}
+          </td>
+        )}
+        <td className="border px-1 py-1 align-top">{actual.name}</td>
+        {diasSemana.map((dia) => {
+          const horario = actual.horarios[dia] || 'Cerrado';
+          const [inicio, fin] = horario.includes('-') ? horario.split(' - ') : [horario];
+          return (
+            <td key={dia} className="border px-1 py-1 text-center align-top">
+              {inicio}<br />{fin || ''}
+            </td>
+          );
+        })}
+      </tr>
+    );
+  }
+
   return (
     <section className="py-4 px-2">
-          <h2 className="text-lg font-semibold text-center mb-4 text-gray-800">
-            Horarios de Bibliotecas
-          </h2>
-          <div className="overflow-x-auto">
+      <h2 className="text-lg font-semibold text-center mb-4 text-gray-800">
+        Horarios de Bibliotecas
+      </h2>
+      <div className="overflow-x-auto">
         <table className="table-auto border text-[10px] mx-auto whitespace-nowrap">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="border px-1 py-1">Ubicación</th>
-                  <th className="border px-1 py-1">Biblioteca</th>
-                  {diasSemana.map((dia) => (
-                    <th key={dia} className="border px-1 py-1">{dia}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {horariosPorBiblioteca.map((biblio, i) => (
-                  <tr key={i}>
-                    <td className="border px-1 py-1 align-top">{biblio.location}</td>
-                    <td className="border px-1 py-1 align-top">{biblio.name}</td>
-                    {diasSemana.map((dia) => {
-                      const horario = biblio.horarios[dia] || 'Cerrado';
-                      const [inicio, fin] = horario.includes('-') ? horario.split(' - ') : [horario];
-                      return (
-                        <td key={dia} className="border px-1 py-1 text-center align-top">
-                          {inicio}<br />{fin || ''}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="border px-1 py-1">Ubicación</th>
+              <th className="border px-1 py-1">Biblioteca</th>
+              {diasSemana.map((dia) => (
+                <th key={dia} className="border px-1 py-1">{dia}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>{filas}</tbody>
+        </table>
         <p className="text-[10px] text-gray-600 mt-2 text-center italic">
           *Los domingos todas las bibliotecas permanecen cerradas
         </p>
@@ -105,5 +119,4 @@ const HorariosBiblioteca = () => {
     </section>
   );
 };
-
 export default HorariosBiblioteca;
