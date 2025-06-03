@@ -3,10 +3,26 @@ import ReservaModal from './ReservaModal';
 import { useState } from 'react';
 
 const Header = () => {
-  const [modalAbierto, setModalAbierto] = useState(false);
+  const [mostrarDropdown, setMostrarDropdown] = useState(false);
+  const [sedeSeleccionada, setSedeSeleccionada] = useState(null);
+  const [mostrarModal, setMostrarModal] = useState(false);
 
-  const abrirModal = () => setModalAbierto(true);
-  const cerrarModal = () => setModalAbierto(false);
+  const sedes = [
+    'Biblioteca Central',
+    'Campus San Joaquín',
+    'Campus Vitacura',
+    'Campus Viña del Mar',
+  ];
+
+  const handleReservarClick = () => {
+    setMostrarDropdown(!mostrarDropdown);
+  };
+
+  const handleSeleccionarSede = (sede) => {
+    setSedeSeleccionada(sede);
+    setMostrarDropdown(false);
+    setMostrarModal(true);
+  };
 
   return (
     <>
@@ -20,16 +36,28 @@ const Header = () => {
             <li><a href="#" className="hover:text-blue-600">Ayuda</a></li>
             <li>
               <button
-                onClick={abrirModal}
+                onClick={handleReservarClick}
                 className='bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-500 transition'
               >
                 Reservar Sala
               </button>
+              {mostrarDropdown && (
+                <div className="absolute mt-2 bg-white border rounded shadow-md z-50">
+                  {sedes.map((sede,index)=> (
+                    <button key={index} onClick={()=> handleSeleccionarSede(sede)} className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                      {sede}
+                    </button>
+                  ))}
+                </div>
+              )}
+              
             </li>
           </ul>
         </nav>
       </header>
-      <ReservaModal isOpen={modalAbierto} onClose={cerrarModal} />
+      {mostrarModal && (
+        <ReservaModal sede={sedeSeleccionada} onClose={() => setMostrarModal(false)}></ReservaModal>
+      )}
     </>
   );
 };
