@@ -9,7 +9,6 @@ const horariosPorBiblioteca = [
       Jueves: '08:15 - 19:45',
       Viernes: '08:15 - 18:45',
       Sábado: '09:00 - 12:45',
-      Domingo: 'Cerrado',
     },
   },
   {
@@ -22,7 +21,6 @@ const horariosPorBiblioteca = [
       Jueves: '08:00 - 20:00',
       Viernes: '08:00 - 19:00',
       Sábado: 'Cerrado',
-      Domingo: 'Cerrado',
     },
   },
   {
@@ -35,7 +33,6 @@ const horariosPorBiblioteca = [
       Jueves: '08:15 - 19:45',
       Viernes: '08:15 - 19:45',
       Sábado: '09:00 - 12:45',
-      Domingo: 'Cerrado',
     },
   },
   {
@@ -48,7 +45,6 @@ const horariosPorBiblioteca = [
       Jueves: '08:30 - 20:30',
       Viernes: '08:30 - 20:30',
       Sábado: '09:00 - 13:00',
-      Domingo: 'Cerrado',
     },
   },
   {
@@ -61,7 +57,6 @@ const horariosPorBiblioteca = [
       Jueves: '08:10 - 20:20',
       Viernes: '08:10 - 19:30',
       Sábado: '09:00 - 14:00',
-      Domingo: 'Cerrado',
     },
   },
 ];
@@ -70,33 +65,39 @@ const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sába
 
 const HorariosBiblioteca = () => {
   return (
-    <section className="py-8 px-2">
-      <h2 className="text-xl font-semibold text-center mb-6 text-gray-800">Horarios de Bibliotecas</h2>
-      <div className="overflow-x-auto">
-        <table className="table-auto border text-xs mx-auto">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="border px-2 py-1">Ubicación</th>
-              <th className="border px-2 py-1">Biblioteca</th>
-              {diasSemana.map((dia) => (
-                <th key={dia} className="border px-2 py-1">{dia}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {horariosPorBiblioteca.map((biblio, i) => (
-              <tr key={i}>
-                <td className="border px-2 py-1">{biblio.location}</td>
-                <td className="border px-2 py-1">{biblio.name}</td>
-                {diasSemana.map((dia) => (
-                  <td key={dia} className="border px-2 py-1 text-center">
-                    {biblio.horarios[dia]}
-                  </td>
+    <section className="py-4 px-2">
+          <h2 className="text-lg font-semibold text-center mb-4 text-gray-800">
+            Horarios de Bibliotecas
+          </h2>
+          <div className="overflow-x-auto">
+        <table className="table-auto border text-[10px] mx-auto whitespace-nowrap">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border px-1 py-1">Ubicación</th>
+                  <th className="border px-1 py-1">Biblioteca</th>
+                  {diasSemana.map((dia) => (
+                    <th key={dia} className="border px-1 py-1">{dia}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {horariosPorBiblioteca.map((biblio, i) => (
+                  <tr key={i}>
+                    <td className="border px-1 py-1 align-top">{biblio.location}</td>
+                    <td className="border px-1 py-1 align-top">{biblio.name}</td>
+                    {diasSemana.map((dia) => {
+                      const horario = biblio.horarios[dia] || 'Cerrado';
+                      const [inicio, fin] = horario.includes('-') ? horario.split(' - ') : [horario];
+                      return (
+                        <td key={dia} className="border px-1 py-1 text-center align-top">
+                          {inicio}<br />{fin || ''}
+                        </td>
+                      );
+                    })}
+                  </tr>
                 ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+              </tbody>
+            </table>
         <p className="text-[10px] text-gray-600 mt-2 text-center italic">
           *Los domingos todas las bibliotecas permanecen cerradas
         </p>
