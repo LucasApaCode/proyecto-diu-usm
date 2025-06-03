@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "titulo": "Introducción a la Física",
+    "autor": "Isaac Newton",
+    "anio": 1687
+  },
+  {
+    "id": 2,
+    "titulo": "Fundamentos de Química",
+    "autor": "Marie Curie",
+    "anio": 1911
+  },
+  {
+    "id": 3,
+    "titulo": "Principios de Biología",
+    "autor": "Charles Darwin",
+    "anio": 1859
+  }
+]
