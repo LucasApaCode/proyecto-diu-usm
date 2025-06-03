@@ -61,7 +61,7 @@ const horariosPorBiblioteca = [
   },
 ];
 
-const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
 const HorariosBiblioteca = () => {
   return (
