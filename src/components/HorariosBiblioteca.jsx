@@ -1,108 +1,108 @@
-const datosBiblioteca = [
-{
-    date: 'Lunes',
-    libraries: [
-      { name: 'Casa Central', hours: '08:00 - 20:00', location: 'Valparaíso' },
-      { name: 'Campus San Joaquín', hours: '08:30 - 19:00', location: 'Santiago' },
-      { name: 'Campus Vitacura', hours: '08:30 - 19:00', location: 'Santiago' },
-      { name: 'Sede Viña del Mar', hours: '08:30 - 18:00', location: 'Viña del Mar' },
-      { name: 'Sede Concepción', hours: '08:30 - 20:00', location: 'Concepción' },
-    ],
+const horariosPorBiblioteca = [
+  {
+    location: 'Valparaíso',
+    name: 'Casa Central',
+    horarios: {
+      Lunes: '08:15 - 19:45',
+      Martes: '08:15 - 19:45',
+      Miércoles: '08:15 - 19:45',
+      Jueves: '08:15 - 19:45',
+      Viernes: '08:15 - 18:45',
+      Sábado: '09:00 - 12:45',
+      Domingo: 'Cerrado',
+    },
   },
   {
-    date: 'Martes',
-    libraries: [
-      { name: 'Casa Central', hours: '08:00 - 20:00', location: 'Valparaíso' },
-      { name: 'Campus Vitacura', hours: '09:00 - 18:00', location: 'Santiago' },
-      { name: 'Campus Vitacura', hours: '08:30 - 19:00', location: 'Santiago' },
-      { name: 'Sede Viña del Mar', hours: '08:30 - 18:00', location: 'Viña del Mar' },
-      { name: 'Sede Concepción', hours: '08:30 - 20:00', location: 'Concepción' },
-    ],
+    location: 'Santiago',
+    name: 'San Joaquín',
+    horarios: {
+      Lunes: '08:00 - 20:00',
+      Martes: '08:00 - 20:00',
+      Miércoles: '08:00 - 20:00',
+      Jueves: '08:00 - 20:00',
+      Viernes: '08:00 - 19:00',
+      Sábado: 'Cerrado',
+      Domingo: 'Cerrado',
+    },
   },
   {
-    date: 'Miercoles',
-    libraries: [
-      { name: 'Casa Central', hours: '08:00 - 20:00', location: 'Valparaíso' },
-      { name: 'Campus Vitacura', hours: '09:00 - 18:00', location: 'Santiago' },
-      { name: 'Campus Vitacura', hours: '08:30 - 19:00', location: 'Santiago' },
-      { name: 'Sede Viña del Mar', hours: '08:30 - 18:00', location: 'Viña del Mar' },
-      { name: 'Sede Concepción', hours: '08:30 - 20:00', location: 'Concepción' },
-    ],
+    location: 'Santiago',
+    name: 'Vitacura',
+    horarios: {
+      Lunes: '08:15 - 19:45',
+      Martes: '08:15 - 19:45',
+      Miércoles: '08:15 - 19:45',
+      Jueves: '08:15 - 19:45',
+      Viernes: '08:15 - 19:45',
+      Sábado: '09:00 - 12:45',
+      Domingo: 'Cerrado',
+    },
   },
   {
-    date: 'Jueves',
-    libraries: [
-      { name: 'Casa Central', hours: '08:00 - 20:00', location: 'Valparaíso' },
-      { name: 'Campus Vitacura', hours: '09:00 - 18:00', location: 'Santiago' },
-      { name: 'Campus Vitacura', hours: '08:30 - 19:00', location: 'Santiago' },
-      { name: 'Sede Viña del Mar', hours: '08:30 - 18:00', location: 'Viña del Mar' },
-      { name: 'Sede Concepción', hours: '08:30 - 20:00', location: 'Concepción' },
-    ],
+    location: 'Viña del Mar',
+    name: 'Sede Viña del Mar',
+    horarios: {
+      Lunes: '08:30 - 20:30',
+      Martes: '08:30 - 20:30',
+      Miércoles: '08:30 - 20:30',
+      Jueves: '08:30 - 20:30',
+      Viernes: '08:30 - 20:30',
+      Sábado: '09:00 - 13:00',
+      Domingo: 'Cerrado',
+    },
   },
   {
-    date: 'Viernes',
-    libraries: [
-      { name: 'Casa Central', hours: '08:00 - 17:00', location: 'Valparaíso' },
-      { name: 'Campus Vitacura', hours: '09:00 - 16:00', location: 'Santiago' },
-      { name: 'Campus Vitacura', hours: '08:30 - 16:00', location: 'Santiago' },
-      { name: 'Sede Viña del Mar', hours: '08:30 - 16:00', location: 'Viña del Mar' },
-      { name: 'Sede Concepción', hours: '08:30 - 17:00', location: 'Concepción' },
-    ],
+    location: 'Concepción',
+    name: 'Sede Concepción',
+    horarios: {
+      Lunes: '08:10 - 20:20',
+      Martes: '08:10 - 20:20',
+      Miércoles: '08:10 - 20:20',
+      Jueves: '08:10 - 20:20',
+      Viernes: '08:10 - 19:30',
+      Sábado: '09:00 - 14:00',
+      Domingo: 'Cerrado',
+    },
   },
-  {
-    date: 'Sábado',
-    libraries: [
-      { name: 'Casa Central', hours: '08:00 - 14:00', location: 'Valparaíso' },
-      { name: 'Campus Vitacura', hours: '09:00 - 14:00', location: 'Santiago' },
-      { name: 'Campus Vitacura', hours: '08:30 - 14:00', location: 'Santiago' },
-      { name: 'Sede Viña del Mar', hours: '08:30 - 14:00', location: 'Viña del Mar' },
-      { name: 'Sede Concepción', hours: '08:30 - 14:00', location: 'Concepción' },
-    ],
-  },
-  {
-    date: 'Domingo',
-    libraries: [
-      { name: 'Casa Central', hours: 'Cerrado', location: 'Valparaíso' },
-      { name: 'Campus Vitacura', hours: 'Cerrado', location: 'Santiago' },
-      { name: 'Campus Vitacura', hours: 'Cerrado', location: 'Santiago' },
-      { name: 'Sede Viña del Mar', hours: 'Cerrado', location: 'Viña del Mar' },
-      { name: 'Sede Concepción', hours: 'Cerrado', location: 'Concepción' },
-    ],
-  },
-]
+];
+
+const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
 const HorariosBiblioteca = () => {
-    return (
-        <section className='bg-gray-50 py-12 px-4'> 
-            <h2 className='text-3xl font-bold text-center mb-10 text-gray-800'>Horarios de Bibliotecas</h2>
-            <div className='max-w-4xl mx-auto shadow rounded-lg overflow-hidden'>
-                <div className='overflow-y-auto max-h-[400px]'>
-                    <table className='min-w-full text-sm text-left border border-gray-200'>   
-                        <thead className='bg-gray-100 text-gray-600 uppercase'>
-                            <tr>
-                                <th className='px-4 py-3'>Ubicación</th>
-                                <th className='px-4 py-3'>Biblioteca</th>
-                                <th className='px-4 py-3'>Día</th>
-                                <th className='px-4 py-3'>Horario</th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-white">
-                            {datosBiblioteca.map((dia, index)=> 
-                                dia.libraries.map((lib, idx) => (
-                                    <tr key={`${index}-${idx}`} className='border-t'>
-                                        <td className='px-4 py-3'>{lib.location}</td>
-                                        <td className='px-4 py-3'>{lib.name}</td>
-                                        <td className='px-4 py-3'>{dia.date}</td>
-                                        <td className='px-4 py-3'>{lib.hours}</td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    )
-}
+  return (
+    <section className="py-8 px-2">
+      <h2 className="text-xl font-semibold text-center mb-6 text-gray-800">Horarios de Bibliotecas</h2>
+      <div className="overflow-x-auto">
+        <table className="table-auto border text-xs mx-auto">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="border px-2 py-1">Ubicación</th>
+              <th className="border px-2 py-1">Biblioteca</th>
+              {diasSemana.map((dia) => (
+                <th key={dia} className="border px-2 py-1">{dia}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {horariosPorBiblioteca.map((biblio, i) => (
+              <tr key={i}>
+                <td className="border px-2 py-1">{biblio.location}</td>
+                <td className="border px-2 py-1">{biblio.name}</td>
+                {diasSemana.map((dia) => (
+                  <td key={dia} className="border px-2 py-1 text-center">
+                    {biblio.horarios[dia]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p className="text-[10px] text-gray-600 mt-2 text-center italic">
+          *Los domingos todas las bibliotecas permanecen cerradas
+        </p>
+      </div>
+    </section>
+  );
+};
 
 export default HorariosBiblioteca;
