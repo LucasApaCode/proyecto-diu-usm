@@ -100,7 +100,7 @@ const HorariosBiblioteca = () => {
         Horarios de Bibliotecas
       </h2>
       <div className="overflow-x-auto">
-        <table className="table-auto border text-[10px] mx-auto whitespace-nowrap">
+        <table className="table-auto border text-[20px] mx-auto whitespace-nowrap">
           <thead className="bg-gray-100">
             <tr>
               <th className="border px-1 py-1">Ubicación</th>
@@ -112,7 +112,7 @@ const HorariosBiblioteca = () => {
           </thead>
           <tbody>{filas}</tbody>
         </table>
-        <p className="text-[10px] text-gray-600 mt-2 text-center italic">
+        <p className="text-[15px] text-gray-600 mt-2 text-center italic">
           *Los domingos todas las bibliotecas permanecen cerradas
         </p>
       </div>
