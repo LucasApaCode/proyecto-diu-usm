@@ -80,24 +80,20 @@ const HorariosBiblioteca = () => {
                     <table className='min-w-full text-sm text-left border border-gray-200'>   
                         <thead className='bg-gray-100 text-gray-600 uppercase'>
                             <tr>
-                                <th className='px-4 py-3'>Fecha</th>
-                                <th className='px-4 py-3'>Biblioteca</th>
-                                <th className='px-4 py-3'>Horario</th>
                                 <th className='px-4 py-3'>Ubicación</th>
+                                <th className='px-4 py-3'>Biblioteca</th>
+                                <th className='px-4 py-3'>Día</th>
+                                <th className='px-4 py-3'>Horario</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white">
                             {datosBiblioteca.map((dia, index)=> 
                                 dia.libraries.map((lib, idx) => (
-                                    <tr key={'${index}-${idx}'} className='border-t'>
-                                        {idx === 0 && (
-                                            <td className="px-4 py-3 font-medium" rowSpan={dia.libraries.length}>
-                                                {dia.date}
-                                            </td>
-                                        )}
-                                        <td className='px-4 py-3'>{lib.name}</td>
-                                        <td className='px-4 py-3'>{lib.hours}</td>
+                                    <tr key={`${index}-${idx}`} className='border-t'>
                                         <td className='px-4 py-3'>{lib.location}</td>
+                                        <td className='px-4 py-3'>{lib.name}</td>
+                                        <td className='px-4 py-3'>{dia.date}</td>
+                                        <td className='px-4 py-3'>{lib.hours}</td>
                                     </tr>
                                 ))
                             )}
