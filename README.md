@@ -9,5 +9,6 @@ Para la correcto visualización y funcionamiento es necesario instalar tailwindc
   -  Lo mismo para "react-lucide" y "react-dom"
 
 Para visualizar la pagina es necesario usar Vite:
+  -  Primero debemos correr por consola y en la carpeta raiz del proyecto **"npm install"**
   -  **"npm run dev"** para iniciar
   -  luego dirigirse al servidor local que se crea
