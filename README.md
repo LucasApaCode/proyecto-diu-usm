@@ -1,12 +1,12 @@
-# React + Vite
+# proyecto-diu-usm
+Prototipo de sitio web para la Biblioteca de la Universidad Técnica Federico Santa María, desarrollado como proyecto académico para el ramo Diseño e Interfaces Usuarias.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+La Versión Actual del MVP se encuentra disponible en la branch: [master](https://github.com/LucasApaCode/proyecto-diu-usm/tree/master)
 
-Currently, two official plugins are available:
+## Instalación y requisitos
+Para la correcto visualización y funcionamiento es necesario instalar tailwindcss:
+  -  Para esto se debe correr el comando **"npm install tailwindcss @tailwindcss/vite"** en la carpeta raiz del proyecto en la consola/terminal.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para visualizar la pagina es necesario usar Vite:
+  -  **npm run dev** para iniciar
+  -  luego dirigirse al servidor local que se crea
