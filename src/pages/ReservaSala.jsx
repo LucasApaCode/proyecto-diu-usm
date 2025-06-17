@@ -3,7 +3,8 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import NavBar2 from '../components/NavBar2'
 import banner from '../assets/reserva_sala.jpg'
-import {salasDisponibles} from '../data/SalasDisponibles' 
+import {salasDisponibles} from '../data/SalasDisponibles'
+import ConfirmacionModal from '../components/ConfirmacionModal'
 
 export default function ReservaSala() {
     const query = new URLSearchParams(window.location.search)
@@ -17,10 +18,28 @@ export default function ReservaSala() {
     const [hasta, setHasta] = useState("20:00")
     const [filtrado, setFiltrado] = useState([])
 
+    const [salaConfirmada, setSalaConfirmada] = useState(null);
+    const [salaSeleccionada, setSalaSeleccionada] = useState(null);
+    const [mostrarHorario, setMostrarHorario] = useState(false);
+
+    const handleMostrarDisponibilidad = (sala) => {
+      setSalaSeleccionada(sala)
+      setMostrarHorario(true)
+    };
+
     const handleFiltrar = (e) => {
-      e.preventDefault()
-      if (!biblioteca) return
-      setFiltrado(salasDisponibles)
+      e.preventDefault();
+      if (!biblioteca) return;
+      const resultado = salasDisponibles.filter((sala) => {
+        if (sala.biblioteca !== biblioteca) return false
+        const horaAnterior = sala.horaFinAnterior
+        return horaAnterior <= desde
+      });
+      setFiltrado(resultado)
+    }
+
+    const handleReservar = (salaNombre) => {
+      setSalaConfirmada(salaNombre)
     };
 
     return (
@@ -30,8 +49,8 @@ export default function ReservaSala() {
             <section className="bg-gray-100 py-16">
                 <div className="px-6 max-w-6xl mx-auto">
                     <h2 className="text-3xl font-bold mb-6 text-gray-800">Buscar espacios - Biblioteca {biblioteca || ""}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                      <form onSubmit={handleFiltrar} className="md:col-span-1 space-y-4 rounded-xl p-4 shadow-md bg-white">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 h-[700px]">
+                      <form onSubmit={handleFiltrar} className="md:col-span-1 space-y-4 rounded-xl p-4 h-fit shadow-md bg-white">
                         <h3 className="text-xl font-semibold mb-2">Buscar por tiempo</h3>
                         <div>
                           <label className="block text-sm font-medium">Categoría</label>
@@ -65,10 +84,10 @@ export default function ReservaSala() {
                         <div className="flex items-center gap-2">
                           <input type="checkbox" /> <label>Con enchufe</label>
                         </div>
-                        <button type="submit" className="bg-[#085c94] text-white px-4 py-2 rounded hover:bg-blue-700 w-full cursor-pointer">Buscar</button>
+                        <button type="submit" className="bg-[#085c94] text-white px-4 py-2 rounded hover:bg-blue-700 w-full cursor-pointer shadow-md">Buscar</button>
                       </form>
 
-                      <div className="md:col-span-3 space-y-6">
+                      <div className="md:col-span-3 space-y-6 overflow-y-auto pr-2 pb-6">
                         {biblioteca ? (
                           <>
                             <p className="text-gray-800">Mostrando {filtrado.length} coincidencias, {desde} - {hasta}, {fecha}</p>
@@ -82,8 +101,8 @@ export default function ReservaSala() {
                                   <div className="text-sm text-gray-500">👥 {sala.capacidad} personas</div>
                                 </div>
                                 <div className="flex flex-col gap-2">
-                                  <button className="bg-[#085c94] text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer shadow-md">Reservar Ahora</button>
-                                  <button className="bg-[#feb101] text-white px-4 py-2 rounded hover:bg-[#c18805] cursor-pointer shadow-md">Mostrar disponibilidad</button>
+                                  <button className="bg-[#085c94] text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer shadow-md" onClick={() => handleReservar(sala.nombre)}>Reservar Ahora</button>
+                                  <button className="bg-[#feb101] text-white px-4 py-2 rounded hover:bg-[#c18805] cursor-pointer shadow-md" onClick={() => handleMostrarDisponibilidad(sala)}>Mostrar disponibilidad</button>
                                 </div>
                               </div>
                             ))}
@@ -94,7 +113,31 @@ export default function ReservaSala() {
                       </div>
                     </div>
                 </div>
+                {mostrarHorario && salaSeleccionada && (
+                  <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex justify-center items-center">
+                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-xl">
+                      <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-xl font-bold">Disponibilidad - {salaSeleccionada.nombre}</h3>
+                        <button onClick={() => setMostrarHorario(false)} className="text-gray-600 hover:text-black text-xl">&times;</button>
+                      </div>
+                      <div className="grid grid-cols-4 gap-2 max-h-[300px] overflow-y-auto">
+                        {Array.from({ length: 15 }, (_, i) => {
+                          const hora = 8 + i;
+                          const label = `${hora.toString().padStart(2, '0')}:00 - ${(hora + 1).toString().padStart(2, '0')}:00`;
+                          const ocupada = hora >= parseInt(salaSeleccionada.horaFinAnterior.split(":")[0]);
+                        
+                          return (
+                            <div key={i} className={`px-3 py-2 rounded text-sm text-center ${ocupada ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                              {label}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
             </section>
+            <ConfirmacionModal sala={salaConfirmada} onClose={() => setSalaConfirmada(null)} />
         </div>
     )
 }
