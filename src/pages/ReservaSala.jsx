@@ -81,7 +81,10 @@ export default function ReservaSala() {
                                   <p className="text-gray-700 text-sm mb-2">{sala.descripcion}</p>
                                   <div className="text-sm text-gray-500">👥 {sala.capacidad} personas</div>
                                 </div>
-                                <button className="bg-[#085c94] text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer">Reservar ahora</button>
+                                <div className="flex flex-col gap-2">
+                                  <button className="bg-[#085c94] text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer shadow-md">Reservar Ahora</button>
+                                  <button className="bg-[#feb101] text-white px-4 py-2 rounded hover:bg-[#c18805] cursor-pointer shadow-md">Mostrar disponibilidad</button>
+                                </div>
                               </div>
                             ))}
                           </>
