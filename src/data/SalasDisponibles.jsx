@@ -5,6 +5,7 @@ export const salasDisponibles = [
     descripcion: "La estación de trabajo grupal cuenta con una mesa, 4 sillas y 1 pizarra.",
     capacidad: 4,
     horaFinAnterior: "18:00",
+    biblioteca: "San Joaquín",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const salasDisponibles = [
     descripcion: "La estación de trabajo grupal cuenta con una mesa, 4 sillas y 1 pizarra.",
     capacidad: 4,
     horaFinAnterior: "16:00",
+    biblioteca: "San Joaquín",
   },
   {
     id: 3,
@@ -19,5 +21,22 @@ export const salasDisponibles = [
     descripcion: "La estación de trabajo grupal cuenta con una mesa y 4 sillas.",
     capacidad: 4,
     horaFinAnterior: "15:30",
+    biblioteca: "San Joaquín",
+  },
+  {
+    id: 4,
+    nombre: "Estación 4 - Sala Circular",
+    descripcion: "La estación de trabajo grupal cuenta con 2 mesas y 4 sillas.",
+    capacidad: 5,
+    horaFinAnterior: "11:30",
+    biblioteca: "San Joaquín",
+  },
+  {
+    id: 5,
+    nombre: "Estación 1 - Sala Circular",
+    descripcion: "La estación de trabajo grupal cuenta con 2 mesas y 4 sillas.",
+    capacidad: 8,
+    horaFinAnterior: "17:30",
+    biblioteca: "Central",
   },
 ];
